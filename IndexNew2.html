@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Designer Portfolio</title>
+    
+    <!-- Типографика Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Иконки RemixIcon (Современный пак) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* --- Modern Product Palette --- */
+            --bg-body: #F9FAFB;
+            --bg-card: rgba(255, 255, 255, 0.8); /* Полупрозрачный для блюра */
+            --text-main: #111827;
+            --text-muted: #6B7280;
+            --border: #E5E7EB;
+            --accent: #2563EB; /* Royal Blue */
+            --accent-soft: #EFF6FF;
+            
+            --radius-l: 20px;
+            --radius-m: 12px;
+            --radius-s: 8px;
+            
+            --shadow-subtle: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-hover: 0 12px 24px -8px rgba(0,0,0,0.08);
+            
+            --anim-fast: 0.2s cubic-bezier(0.2, 0, 0, 1);
+            --anim-smooth: 0.4s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            background-image: radial-gradient(circle at 50% 0%, #E0E7FF 0%, transparent 40%);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 80px 20px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        /* --- Анимация появления (Staggered Fade In) --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s var(--anim-smooth) forwards;
+            opacity: 0;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        /* --- Header --- */
+        header { margin-bottom: 56px; }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            border: 1px solid #D1FAE5;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #059669;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10B981;
+            border-radius: 50%;
+            position: relative;
+        }
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
+            border-radius: 50%;
+            background: #10B981;
+            opacity: 0.3;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+            color: #111827;
+        }
+
+        .role {
+            font-size: 18px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .role i { font-size: 16px; opacity: 0.7; }
+
+        /* --- Contact Toolbar --- */
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid var(--border);
+            padding: 10px 16px;
+            border-radius: var(--radius-m);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all var(--anim-fast);
+            cursor: pointer;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn i { font-size: 16px; color: var(--text-muted); transition: color 0.2s; }
+        .btn:hover i { color: var(--accent); }
+
+        /* --- Section Styling --- */
+        section { margin-bottom: 48px; }
+        
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-label::before {
+            content: '';
+            width: 12px; height: 1px;
+            background: var(--text-muted);
+            opacity: 0.5;
+        }
+
+        /* --- Cards (Glassmorphism) --- */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: var(--radius-l);
+            padding: 32px;
+            box-shadow: var(--shadow-subtle);
+            transition: all var(--anim-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Тонкая обводка градиентом при наведении */
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-l);
+            padding: 1px;
+            background: linear-gradient(120deg, transparent 40%, rgba(37, 99, 235, 0.3), transparent 60%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        .card:hover::after { opacity: 1; }
+
+        /* --- Experience Item --- */
+        .exp-item { margin-bottom: 24px; }
+        .exp-item:last-child { margin-bottom: 0; }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+        
+        .exp-title {
+            font-size: 17px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .exp-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px; height: 28px;
+            background: var(--bg-body);
+            border-radius: 6px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .date {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
+            background: #F3F4F6;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .exp-role {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: block;
+            margin-left: 36px; /* Отступ под иконку */
+        }
+
+        .exp-desc {
+            margin-left: 36px;
+            color: #4B5563;
+            font-size: 15px;
+        }
+        .exp-desc ul {
+            list-style: none;
+        }
+        .exp-desc li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 8px;
+        }
+        .exp-desc li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        /* --- Skills Grid (Bento) --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        
+        .bento-item {
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius-m);
+            border: 1px solid var(--border);
+        }
+
+        .bento-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 13px;
+            background: var(--bg-body);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: #374151;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        .tag:hover {
+            border-color: var(--border);
+            background: white;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 600px) {
+            body { padding: 40px 16px; }
+            h1 { font-size: 28px; }
+            .exp-header { flex-direction: column; gap: 4px; }
+            .exp-role, .exp-desc { margin-left: 0; }
+            .exp-icon { display: none; }
+            .bento-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <header class="animate-in">
+        <div class="status-pill">
+            <div class="status-dot"></div>
+            <span>Open to work</span>
+        </div>
+        <h1>Имя Фамилия</h1>
+        <div class="role">
+            <i class="ri-palette-line"></i>
+            Product / UX/UI Designer
+        </div>
+        
+        <div class="toolbar">
+            <!-- Кнопка Telegram -->
+            <a href="https://t.me/..." target="_blank" class="btn">
+                <i class="ri-telegram-fill"></i>
+                Telegram
+            </a>
+            
+            <!-- Кнопка Email с функцией копирования -->
+            <button onclick="copyEmail()" class="btn" id="emailBtn">
+                <i class="ri-mail-send-line"></i>
+                <span id="emailText">email@example.com</span>
+            </button>
+
+            <!-- Ссылки -->
+            <a href="..." target="_blank" class="btn">
+                <i class="ri-behance-fill"></i> Portfolio
+            </a>
+            <a href="..." target="_blank" class="btn">
+                <i class="ri-linkedin-fill"></i> LinkedIn
+            </a>
+            <div class="btn" style="cursor: default; background: transparent; border-color: transparent; box-shadow: none;">
+                <i class="ri-map-pin-line"></i> Phuket, TH (UTC+7)
+            </div>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section class="animate-in delay-1">
+        <div class="section-label">Обо мне</div>
+        <div class="card">
+            <p style="font-size: 16px; margin-bottom: 16px;">
+                <strong>Продуктовый дизайнер</strong> с техническим бэкграундом (МАИ: Прикладная математика). 
+                Я превращаю сложные бизнес-процессы в понятные интерфейсы.
+            </p>
+            <p style="color: var(--text-muted); font-size: 15px;">
+                Мой подход — это баланс между эстетикой и логикой. Делаю интерфейсы, которые помогают людям быстрее понимать, что происходит, и выполнять задачи без лишних действий. Имею опыт публичных выступлений для Google Russia.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills (Bento Grid) -->
+    <section class="animate-in delay-2">
+        <div class="section-label">Навыки</div>
+        <div class="bento-grid">
+            <div class="bento-item">
+                <div class="bento-title"><i class="ri-layout-2-line"></i> UX / Logic</div>
+                <div class="tag-cloud">
+                    <span class="tag">User Flows</span>
+                    <span class="tag">CJM</span>
+                    <span class="tag">Information Arch</span>
+                    <span class="tag">Prototyping</span>
+                </div>
+            </div>
+            <div class="bento-item">
+                <div class="bento-title"><i class="ri-pencil-ruler-2-line"></i> UI / Visual</div>
+                <div class="tag-cloud">
+                    <span class="tag">Design Systems</span>
+                    <span class="tag">Typography</span>
+                    <span class="tag">Components</span>
+                    <span class="tag">Auto Layout</span>
+                </div>
+            </div>
+            <div class="bento-item">
+                <div class="bento-title"><i class="ri-tools-line"></i> Tools</div>
+                <div class="tag-cloud">
+                    <span class="tag">Figma</span>
+                    <span class="tag">Miro</span>
+                    <span class="tag">Adobe Suite</span>
+                    <span class="tag">Claude / GPT</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="animate-in delay-3">
+        <div class="section-label">Опыт работы</div>
+        <div class="card">
+            
+            <!-- Job 1 -->
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">
+                        <div class="exp-icon"><i class="ri-macbook-line"></i></div>
+                        Freelance
+                    </div>
+                    <span class="date">2013 — н.в.</span>
+                </div>
+                <span class="exp-role">UX/UI & Visual Designer</span>
+                <div class="exp-desc">
+                    <ul>
+                        <li>Проектирование интерфейсов и визуальных материалов для бизнеса.</li>
+                        <li>Фокус на ясной визуальной иерархии и CTR.</li>
+                        <li>Управление небольшими креативными командами.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #F3F4F6; margin: 24px 0 24px 36px;">
+
+            <!-- Job 2 -->
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-title">
+                        <div class="exp-icon"><i class="ri-building-4-line"></i></div>
+                        Dataduck
+                    </div>
+                    <span class="date">Апр 2021 — Окт 2021</span>
+                </div>
+                <span class="exp-role">UX/UI, Graphic Designer</span>
+                <div class="exp-desc">
+                    <ul>
+                        <li>Разработка User Journey для приложения Dragon Family.</li>
+                        <li>Дизайн лендингов и маркетинговых материалов.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="animate-in delay-3">
+        <div class="section-label">Избранные проекты</div>
+        
+        <div class="card" style="margin-bottom: 16px;">
+            <div class="exp-header">
+                <div class="exp-title">
+                    <div class="exp-icon" style="background: #EFF6FF; color: #2563EB;"><i class="ri-hospital-line"></i></div>
+                    CRM Табло для клиник
+                </div>
+                <span class="date">2022</span>
+            </div>
+            <div class="exp-desc" style="margin-top: 12px;">
+                <p style="font-size: 14px; margin-bottom: 8px;"><strong>Задача:</strong> Врачи смотрят на экран на бегу. Нужно мгновенно считывать критические задержки.</p>
+                <div style="background: #F3F4F6; padding: 12px; border-radius: 8px; font-size: 14px;">
+                    <i class="ri-check-double-line" style="color: #10B981; vertical-align: middle; margin-right: 4px;"></i>
+                    <strong>Решение:</strong> Цветовое кодирование времени ожидания (красный после 20 мин). Сохранение привычных иконок для быстрого онбординга персонала.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="exp-header">
+                <div class="exp-title">
+                    <div class="exp-icon"><i class="ri-shopping-cart-2-line"></i></div>
+                    Редизайн «Шинотека»
+                </div>
+            </div>
+            <div class="exp-desc" style="margin-top: 8px;">
+                Полный редизайн e-commerce (15+ страниц). Переработка логики каталога и фильтрации для повышения конверсии.
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="animate-in delay-3">
+        <p>© 2025 Designed & Coded with <i class="ri-heart-3-line" style="vertical-align: middle;"></i> and AI</p>
+    </footer>
+
+</div>
+
+<!-- Скрипт для кнопки копирования Email -->
+<script>
+    function copyEmail() {
+        /* Вставьте сюда ваш реальный email */
+        const email = "your.email@example.com"; 
+        
+        navigator.clipboard.writeText(email).then(() => {
+            const btn = document.getElementById("emailBtn");
+            const text = document.getElementById("emailText");
+            const originalText = text.innerText;
+            
+            // Визуальная обратная связь
+            btn.style.background = "#ECFDF5";
+            btn.style.borderColor = "#10B981";
+            btn.style.color = "#047857";
+            text.innerText = "Скопировано!";
+            
+            setTimeout(() => {
+                btn.style.background = "white";
+                btn.style.borderColor = "#E5E7EB";
+                btn.style.color = "#111827";
+                text.innerText = originalText;
+            }, 2000);
+        });
+    }
+</script>
+
+</body>
+</html>
