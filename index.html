@@ -1,667 +1,670 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vladimir Prokhorenko - Product Designer</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-    
-    <!-- Icons (Remix Icon) -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            /* --- COLORS --- */
-            --bg-body: #F9FAFB;
-            --bg-card: #FFFFFF;
-            
-            --text-primary: #111827;
-            --text-secondary: #4B5563;
-            --text-tertiary: #9CA3AF;
-            
-            --accent: #2563EB;        /* Royal Blue */
-            
-            --border: #E5E7EB;
-            --radius: 20px;
-            
-            /* --- SHADOWS --- */
-            --shadow-static: 0 1px 3px rgba(0,0,0,0.04);
-            --shadow-hover: 0 20px 40px -12px rgba(37, 99, 235, 0.12), 0 8px 16px -4px rgba(37, 99, 235, 0.04);
-            
-            --anim: 0.3s ease;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vladimir Prokhorenko - Product Designer</title>
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.6;
-            padding-bottom: 80px;
-            -webkit-font-smoothing: antialiased;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
-        /* --- NAV --- */
-        .navbar {
-            padding: 32px 0;
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;
-        }
+  <style>
+    :root{
+      --bg-body:#F9FAFB;
+      --bg-card:#FFFFFF;
 
-        .nav-role {
-            font-weight: 600; color: var(--text-primary); font-size: 15px; display: flex; align-items: center; gap: 10px; padding: 0; 
-        }
-        .nav-role::before { content: ""; width: 8px; height: 8px; background: #10B981; border-radius: 50%; }
+      --text-primary:#111827;
+      --text-secondary:#4B5563;
+      --text-tertiary:#9CA3AF;
 
-        .lang-switch {
-            background: white; padding: 3px; border-radius: 100px; display: flex; border: 1px solid var(--border);
-        }
-        .lang-btn {
-            border: none; background: transparent; padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--text-tertiary); transition: var(--anim);
-        }
-        .lang-btn.active { background: var(--text-primary); color: white; }
+      --accent:#2563EB;
 
-        /* --- CARD STYLE --- */
-        .card {
-            background: var(--bg-card);
-            border: 1px solid transparent; 
-            border-radius: var(--radius);
-            padding: 32px;
-            transition: all var(--anim);
-            position: relative;
-            margin-bottom: 24px;
-            box-shadow: var(--shadow-static); 
-        }
-        .card:hover {
-            border-color: rgba(37, 99, 235, 0.3); 
-            box-shadow: var(--shadow-hover);
-            z-index: 2;
-        }
+      --border:#E5E7EB;
+      --radius:20px;
 
-        /* --- HERO --- */
-        .hero-inner { display: flex; gap: 32px; align-items: flex-start; }
-        .avatar {
-            width: 100px; height: 100px; border-radius: 20px; object-fit: cover; border: 1px solid var(--border); flex-shrink: 0;
-        }
-        h1 { font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; line-height: 1.2; }
-        .bio-text { color: var(--text-secondary); font-size: 15px; max-width: 640px; margin-bottom: 20px; }
+      --shadow-static:0 1px 3px rgba(0,0,0,0.04);
+      --shadow-hover:0 20px 40px -12px rgba(37,99,235,0.12), 0 8px 16px -4px rgba(37,99,235,0.04);
 
-        .contact-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-        
-        /* Spacer between Contact and Portfolio */
-        .spacer { width: 16px; display: none; }
-        @media (min-width: 600px) { .spacer { display: block; } }
+      --anim:0.3s ease;
+    }
 
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            background: white; border: 1px solid var(--border);
-            padding: 10px 16px; border-radius: 12px;
-            font-size: 13px; font-weight: 600; color: var(--text-primary);
-            text-decoration: none; transition: all 0.2s; cursor: pointer;
-            white-space: nowrap;
-            height: 40px; 
-            min-width: 130px; 
-        }
-        .btn:hover {
-            background: #F3F4F6; border-color: #D1D5DB; color: var(--text-primary);
-        }
-        .btn i { color: var(--text-tertiary); transition: 0.2s; font-size: 16px; }
-        
-        /* Figma Icon Style - Dark by default */
-        .figma-icon { width: 16px; height: 16px; fill: #111827; transition: fill 0.2s; }
-        .btn:hover .figma-icon { fill: #111827; }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Inter',sans-serif;
+      background-color:var(--bg-body);
+      color:var(--text-secondary);
+      font-size:14px;
+      line-height:1.6;
+      padding-bottom:80px;
+      -webkit-font-smoothing:antialiased;
+    }
+    .container{max-width:1000px;margin:0 auto;padding:0 24px;}
 
-        /* PRIMARY CTA (Blue) */
-        .btn.primary {
-            background: var(--accent); border-color: var(--accent); color: white;
-        }
-        .btn.primary:hover {
-            background: #1D4ED8; border-color: #1D4ED8; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-        .btn.primary i { color: white; }
+    .navbar{
+      padding:32px 0;
+      display:flex;justify-content:space-between;align-items:center;
+      margin-bottom:32px;
+    }
+    .nav-role{
+      font-weight:600;color:var(--text-primary);font-size:15px;
+      display:flex;align-items:center;gap:10px;
+    }
+    .nav-role::before{content:"";width:8px;height:8px;background:#10B981;border-radius:50%;}
+    .lang-switch{background:white;padding:3px;border-radius:100px;display:flex;border:1px solid var(--border);}
+    .lang-btn{
+      border:none;background:transparent;padding:6px 14px;border-radius:100px;
+      font-size:13px;font-weight:600;cursor:pointer;color:var(--text-tertiary);transition:var(--anim);
+    }
+    .lang-btn.active{background:var(--text-primary);color:white;}
 
-        /* --- HIGHLIGHTS --- */
-        .highlights-row {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;
-        }
-        .hl-card {
-            background: white; 
-            border: 1px solid transparent; 
-            box-shadow: var(--shadow-static);
-            border-radius: var(--radius); padding: 24px;
-            transition: all var(--anim);
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .hl-card:hover {
-            border-color: rgba(37, 99, 235, 0.3); box-shadow: var(--shadow-hover);
-        }
-        
-        .hl-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
-        .hl-icon {
-            width: 36px; height: 36px; background: #F3F4F6; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-size: 18px;
-        }
-        .hl-logo {
-            height: 24px; width: auto; object-fit: contain;
-            filter: grayscale(100%); opacity: 0.6; transition: 0.4s;
-        }
-        .hl-card:hover .hl-logo { filter: grayscale(0%); opacity: 1; }
+    .card{
+      background:var(--bg-card);
+      border:1px solid transparent;
+      border-radius:var(--radius);
+      padding:32px;
+      transition:all var(--anim);
+      position:relative;
+      margin-bottom:24px;
+      box-shadow:var(--shadow-static);
+    }
+    .card:hover{
+      box-shadow:var(--shadow-hover);
+      z-index:2;
+    }
 
-        .hl-title { font-weight: 700; color: var(--text-primary); font-size: 15px; margin-bottom: 4px; transition: color 0.3s; }
-        .hl-desc { font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
-        
-        /* Hover Colors */
-        .hl-card.google:hover .hl-title { color: #D97706; }
-        .hl-card.tech:hover .hl-title { color: #2563EB; }
+    .hero-inner{display:flex;gap:32px;align-items:flex-start;}
+    .avatar{
+      width:100px;height:100px;border-radius:20px;object-fit:cover;
+      
+      flex-shrink:0;
+      background:#F3F4F6;
+    }
+    h1{font-size:32px;font-weight:700;color:var(--text-primary);margin-bottom:8px;line-height:1.2;}
+    .bio-text{color:var(--text-secondary);font-size:15px;max-width:640px;margin-bottom:20px;}
 
-        /* --- MAIN GRID --- */
-        .main-grid {
-            display: grid; grid-template-columns: 1.8fr 1fr; gap: 24px; align-items: start;
-        }
+    .contact-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+    .spacer{width:16px;display:none;}
+    @media (min-width:600px){.spacer{display:block;}}
 
-        /* --- CONTENT STYLES --- */
-        .section-label {
-            font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--text-tertiary); margin-bottom: 12px; display: block; margin-left: 4px;
-        }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      background:white;border:1px solid var(--border);
+      padding:10px 16px;border-radius:12px;
+      font-size:13px;font-weight:600;color:var(--text-primary);
+      text-decoration:none;transition:all 0.2s;cursor:pointer;
+      white-space:nowrap;
+      height:40px;
+      min-width:130px;
+    }
+    .btn:hover{background:#F3F4F6;border-color:#D1D5DB;color:var(--text-primary);}
+    .btn i{color:var(--text-tertiary);transition:0.2s;font-size:16px;}
+    .btn:hover i{color:var(--accent);}
+    .btn.primary:hover i{color:white;}
 
-        h3 { font-size: 18px; font-weight: 700; color: var(--text-primary); margin: 0; }
-        .case-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-        .case-year { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-tertiary); }
+    .figma-icon{width:16px;height:16px;stroke:#111827;stroke-width:1.5;fill:none;transition:stroke 0.2s;}
+    .btn:hover .figma-icon{stroke:var(--accent);}
 
-        /* CHIPS */
-        .tags-wrapper { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-        .chip {
-            font-size: 12px; padding: 5px 10px; border-radius: 6px;
-            background: #F3F4F6; color: var(--text-secondary); font-weight: 500;
-            border: 1px solid transparent; transition: 0.2s;
-        }
-        .chip:hover { background: #EFF6FF; color: var(--accent); border-color: #DBEAFE; }
+    .btn.primary{background:var(--accent);border-color:var(--accent);color:white;}
+    .btn.primary:hover{background:#1D4ED8;border-color:#1D4ED8;box-shadow:0 4px 12px rgba(37,99,235,0.3);}
+    .btn.primary i{color:white;}
 
-        .block-title {
-            font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 8px; margin-top: 24px;
-        }
-        .block-title:first-child { margin-top: 0; }
+    .highlights-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;}
+    .hl-card{
+      background:white;border:1px solid transparent;box-shadow:var(--shadow-static);
+      border-radius:var(--radius);padding:24px;
+      transition:all var(--anim);
+      display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .hl-card:hover{box-shadow:var(--shadow-hover);}
+    .hl-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+    .hl-icon{
+      width:36px;height:36px;background:#F3F4F6;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;color:var(--text-primary);font-size:18px;
+    }
+    .hl-logo{height:24px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:0.6;transition:0.4s;}
+    .hl-card:hover .hl-logo{filter:grayscale(0%);opacity:1;}
+    .hl-title{font-weight:700;color:var(--text-primary);font-size:15px;margin-bottom:4px;transition:color 0.3s;}
+    .hl-desc{font-size:13px;line-height:1.5;color:var(--text-secondary);}
+    .hl-card.google:hover .hl-title{color:#D97706;}
+    .hl-card.tech:hover .hl-title{color:#2563EB;}
 
-        p { margin-bottom: 12px; font-size: 14px; }
-        
-        ul.dash-list { list-style: none; margin-bottom: 12px; }
-        ul.dash-list li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 14px; }
-        ul.dash-list li::before { content: "—"; position: absolute; left: 0; color: var(--text-tertiary); }
-        strong { color: var(--text-primary); font-weight: 600; }
+    .main-grid{display:grid;grid-template-columns:1.8fr 1fr;gap:24px;align-items:start;}
 
-        .metrics-block {
-            background: #F9FAFB; border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-top: 20px;
-        }
-        .metrics-title {
-            font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 12px; display: block;
-        }
-        .metrics-row {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 16px; 
-        }
-        .m-val { display: block; font-weight: 700; color: var(--text-primary); font-size: 13px; margin-bottom: 4px; }
-        .m-desc { font-size: 12px; line-height: 1.4; color: var(--text-secondary); }
+    .section-label{
+      font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;
+      color:var(--text-tertiary);margin-bottom:12px;display:block;margin-left:4px;
+    }
+    h3{font-size:18px;font-weight:700;color:var(--text-primary);margin:0;}
+    .case-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+    .case-year{font-family:'JetBrains Mono', monospace;font-size:12px;color:var(--text-tertiary);}
 
-        .exp-item { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
-        .exp-item:last-child { border: none; padding: 0; margin: 0; }
-        .role { color: var(--accent); font-weight: 600; font-size: 13px; margin-bottom: 8px; display: block; }
+    .tags-wrapper{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+    .chip{
+      font-size:12px;padding:5px 10px;border-radius:6px;
+      background:#F3F4F6;color:var(--text-secondary);font-weight:500;
+      border:1px solid transparent;transition:0.2s;
+    }
+    .chip:hover{background:#EFF6FF;color:var(--accent);border-color:#DBEAFE;}
 
-        /* SIDEBAR ITEMS */
-        .skill-group { margin-bottom: 20px; }
-        .skill-group p { font-size: 13px; margin: 0; line-height: 1.6; }
+    .block-title{
+      font-size:11px;font-weight:700;text-transform:uppercase;color:var(--text-tertiary);
+      margin-bottom:8px;margin-top:24px;
+    }
+    .block-title:first-child{margin-top:0;}
+    p{margin-bottom:12px;font-size:14px;}
+    ul.dash-list{list-style:none;margin-bottom:12px;}
+    ul.dash-list li{position:relative;padding-left:20px;margin-bottom:8px;font-size:14px;}
+    ul.dash-list li::before{content:"—";position:absolute;left:0;color:var(--text-tertiary);}
+    strong{color:var(--text-primary);font-weight:600;}
 
-        .mini-proj {
-            background: #F9FAFB; border-radius: 12px; padding: 12px; margin-bottom: 12px; transition: var(--anim); border: 1px solid transparent;
-        }
-        .mini-proj:hover { 
-            background: white; border-color: var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.03); 
-        }
-        .mini-head { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
-        .mini-sub { font-size: 12px; color: var(--text-tertiary); }
+    .metrics-block{background:#F9FAFB;border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:20px;}
+    .metrics-title{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:12px;display:block;}
+    .metrics-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .m-val{display:block;font-weight:700;color:var(--text-primary);font-size:13px;margin-bottom:4px;}
+    .m-desc{font-size:12px;line-height:1.4;color:var(--text-secondary);}
 
-        .edu-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
+    .exp-item{padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid var(--border);}
+    .exp-item:last-child{border:none;padding:0;margin:0;}
+    .role{color:var(--accent);font-weight:600;font-size:13px;margin-bottom:8px;display:block;}
 
-        @media (max-width: 850px) {
-            .hero-inner { flex-direction: column; }
-            .highlights-row { grid-template-columns: 1fr; }
-            .main-grid { grid-template-columns: 1fr; }
-            .navbar { flex-direction: column; gap: 16px; }
-            .spacer { display: none; }
-            .contact-bar { flex-direction: column; align-items: stretch; }
-            .btn { justify-content: center; }
-        }
-        .hidden { display: none; }
-    </style>
+    .skill-group{margin-bottom:20px;}
+    .skill-group p{font-size:13px;margin:0;line-height:1.6;}
+
+    .mini-proj{background:#F9FAFB;border-radius:12px;padding:12px;margin-bottom:12px;transition:var(--anim);border:1px solid transparent;}
+    .mini-proj:hover{background:white;border-color:var(--border);box-shadow:0 2px 8px rgba(0,0,0,0.03);}
+    .mini-head{font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:2px;}
+    .mini-sub{font-size:12px;color:var(--text-tertiary);}
+
+    .edu-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;}
+
+    @media (max-width:850px){
+      .hero-inner{flex-direction:column;}
+      .highlights-row{grid-template-columns:1fr;}
+      .main-grid{grid-template-columns:1fr;}
+      .navbar{flex-direction:column;gap:16px;}
+      .spacer{display:none;}
+      .contact-bar{flex-direction:column;align-items:stretch;}
+      .btn{justify-content:center;}
+    }
+    .hidden{display:none;}
+
+    /* ===== PRINT / PDF ===== */
+    @page { margin: 10mm; } /* минимальные поля без «воздуха» */
+    @media print{
+      html, body{background:#fff !important;}
+      body{padding:0 !important;}
+      .container{max-width:100% !important;padding:0 !important;margin:0 !important;}
+      .navbar{display:none !important;}
+
+      /* сохраняем сетку как на экране */
+      .main-grid{grid-template-columns:1.8fr 1fr !important;gap:16px !important;}
+
+      /* убираем «воздух» */
+      .card, .hl-card{
+        box-shadow:none !important;
+        background:#fff !important;
+        border:1px solid #E5E7EB !important;
+        margin-bottom:12px !important;
+        padding:18px !important;
+        break-inside:avoid !important;
+        page-break-inside:avoid !important;
+      }
+
+      /* запрет переносов и «скачков» строк */
+      h1, h3, .case-header, .tags-wrapper, .contact-bar, .metrics-row, .edu-row{
+        break-inside:avoid !important;
+      }
+      .btn, .chip, .case-year, .role{white-space:nowrap !important;}
+      p, li{orphans:3;widows:3;}
+
+      /* превращаем кнопки в текстовые ссылки */
+      .contact-bar{display:flex !important;gap:12px !important;flex-wrap:nowrap !important;}
+      .btn{
+        display:inline-block !important;
+        border:none !important;
+        padding:0 !important;
+        background:none !important;
+        height:auto !important;
+        min-width:0 !important;
+        box-shadow:none !important;
+        color:#000 !important;
+        font-weight:500 !important;
+      }
+      .btn i, .figma-icon{display:none !important;}
+
+      /* скрываем кнопку скачивания и email-кнопку (email покажем текстом) */
+      .btn.primary{display:none !important;}
+      #emailBtn{display:none !important;}
+
+      /* печатные текстовые строки контактов без переносов */
+      .print-contacts{
+        display:flex !important;
+        gap:12px !important;
+        flex-wrap:nowrap !important;
+        margin-top:10px !important;
+        color:#000 !important;
+        font-weight:500 !important;
+        white-space:nowrap !important;
+      }
+      .print-contacts a{color:#000 !important;text-decoration:none !important;white-space:nowrap !important;}
+      .print-contacts span{white-space:nowrap !important;}
+
+      /* чипы делаем «печатными» */
+      .chip{border:1px solid #E5E7EB !important;background:#fff !important;color:#000 !important;}
+      .mini-proj{background:#fff !important;border:1px solid #E5E7EB !important;}
+    }
+  </style>
 </head>
-<body>
 
-<div class="container">
+<body>
+  <div class="container">
 
     <nav class="navbar">
-        <div class="nav-role">Product / UX/UI Designer</div>
-        <div class="lang-switch">
-            <button class="lang-btn active" onclick="setLang('en')">English</button>
-            <button class="lang-btn" onclick="setLang('ru')">Русский</button>
-        </div>
+      <div class="nav-role">Product / UX/UI Designer</div>
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('en')">English</button>
+        <button class="lang-btn" onclick="setLang('ru')">Русский</button>
+      </div>
     </nav>
 
-    <!-- HERO -->
     <div class="card">
-        <div class="hero-inner">
-            <img src="https://ui-avatars.com/api/?name=V+P&background=111827&color=fff&size=200" class="avatar" alt="VP">
-            <div>
-                <h1 id="name">Vladimir Prokhorenko</h1>
-                <p style="margin-bottom: 12px; font-size: 13px; color: var(--text-tertiary);">
-                    <i class="ri-map-pin-line"></i> Phuket, Thailand (UTC+7) • Remote
-                </p>
-                <p id="bio" class="bio-text">
-                    Product Designer with a technical background (MAI: Applied Math). I design interfaces that help people understand what's happening faster and complete tasks without unnecessary actions.
-                </p>
-                <div class="contact-bar">
-                    <!-- CONTACT GROUP (Start) -->
-                    <a href="https://t.me/..." target="_blank" class="btn"><i class="ri-telegram-fill"></i> Telegram</a>
-                    <button onclick="copyEmail()" class="btn" id="emailBtn" style="min-width: 170px;"><i class="ri-mail-line" id="emailIcon"></i> <span id="emailText">ellgin1@gmail.com</span></button>
-                    
-                    <div class="spacer"></div>
-                    
-                    <!-- WORK GROUP (End) -->
-                    <a href="https://figma.com/..." target="_blank" class="btn">
-                        <!-- Figma SVG (Dark Fill) -->
-                        <svg class="figma-icon" viewBox="0 0 38 57" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 28.5C19 25.3516 20.2509 22.3322 22.477 20.1061C24.7031 17.88 27.7225 16.6292 30.8708 16.6292C34.0192 16.6292 37.0386 17.88 39.2647 20.1061C41.4908 22.3322 42.7417 25.3516 42.7417 28.5C42.7417 31.6484 41.4908 34.6678 39.2647 36.8939C37.0386 39.12 34.0192 40.3708 30.8708 40.3708H19V28.5Z"/>
-                            <path d="M9.5 28.5C6.35163 28.5 3.33222 27.2491 1.10612 25.023C-1.11998 22.7969 -2.37083 19.7775 -2.37083 16.6292C-2.37083 13.4808 -1.11998 10.4614 1.10612 8.23531C3.33222 6.00921 6.35163 4.75836 9.5 4.75836H19V28.5H9.5Z"/>
-                            <path d="M30.8708 16.6292C34.0192 16.6292 37.0386 15.3783 39.2647 13.1522C41.4908 10.9261 42.7417 7.90674 42.7417 4.75836C42.7417 1.60999 41.4908 -1.40942 39.2647 -3.63553C37.0386 -5.86163 34.0192 -7.11249 30.8708 -7.11249H19V16.6292H30.8708Z"/>
-                            <path d="M9.5 52.2416C12.6484 52.2416 15.6678 50.9908 17.8939 48.7647C20.12 46.5386 21.3708 43.5192 21.3708 40.3708V28.5H9.5C6.35163 28.5 3.33222 29.7509 1.10612 31.977C-1.11998 34.2031 -2.37083 37.2225 -2.37083 40.3708C-2.37083 43.5192 -1.11998 46.5386 1.10612 48.7647C3.33222 50.9908 6.35163 52.2416 9.5 52.2416Z"/>
-                        </svg>
-                        Portfolio (Figma)
-                    </a>
-                    
-                    <!-- BLUE BUTTON -->
-                    <a href="CV_Prokhorenko.pdf" download class="btn primary"><i class="ri-file-download-line"></i> <span id="cvText">Download CV</span></a>
-                </div>
-            </div>
+      <div class="hero-inner">
+        <!-- AVATAR: GitHub RAW (direct image) -->
+        <img
+          src="https://raw.githubusercontent.com/ellgin/ellgin/main/photo.jpg"
+          class="avatar"
+          alt="Vladimir Prokhorenko photo"
+          loading="eager"
+        />
+
+        <div>
+          <h1 id="name">Vladimir Prokhorenko</h1>
+
+          <p id="loc" style="margin-bottom:12px;font-size:13px;color:var(--text-tertiary);">
+            <i class="ri-map-pin-line"></i> Phuket, Thailand (UTC+7) • Remote
+          </p>
+
+          <p id="bio" class="bio-text">
+            Product designer with a technical background and strong visual foundation. I create interfaces that help people quickly understand the essence and complete tasks without unnecessary actions.
+          </p>
+
+          <div class="contact-bar">
+            <!-- 1. Download CV -->
+            <button onclick="window.print()" class="btn primary">
+              <i class="ri-file-download-line"></i> <span id="cvText">Download CV</span>
+            </button>
+
+            <!-- 2. Portfolio (Suitcase) -->
+            <a href="https://figma.com/board/4Mn69euN5LLjiZenrga3Uk/Portfolio-Product-UX-UI-Prokhorenko-Vladimir?node-id=0-1&p=f&t=cUNeras8JqNxEVx9-0" target="_blank" class="btn">
+              <i class="ri-briefcase-line"></i>
+              <span id="portText">Portfolio</span>
+            </a>
+
+            <!-- 3. Telegram (Outline/Paper Plane) -->
+            <a href="https://t.me/mrEllgin" target="_blank" class="btn">
+              <i class="ri-send-plane-line"></i> Telegram
+            </a>
+
+            <!-- 4. Email (No spacer before it) -->
+            <button onclick="copyEmail()" class="btn" id="emailBtn" style="min-width:170px;">
+              <i class="ri-mail-line" id="emailIcon"></i> <span id="emailText">ellgin1@gmail.com</span>
+            </button>
+          </div>
+
+          <div class="print-contacts" style="display:none;">
+            <a href="https://t.me/mrEllgin">Telegram: t.me/mrEllgin</a>
+            <span>Email: ellgin1@gmail.com</span>
+            <span>Portfolio: figma.com/…</span>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- HIGHLIGHTS -->
     <div id="highlights-en" class="highlights-row">
-        <div class="hl-card google">
-            <div class="hl-top">
-                <div class="hl-icon"><i class="ri-star-line" style="color: #D97706;"></i></div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" class="hl-logo" alt="Google">
-            </div>
-            <div>
-                <div class="hl-title">Speaker at Google Russia</div>
-                <div class="hl-desc">YouTube NextStep Festival: Seminar for top creators (100k+) on visual packaging and CTR metrics.</div>
-            </div>
+      <div class="hl-card google">
+        <div class="hl-top">
+          <div class="hl-icon"><i class="ri-star-line" style="color:#D97706;"></i></div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" class="hl-logo" alt="Google">
         </div>
-        <div class="hl-card tech">
-            <div class="hl-top">
-                <div class="hl-icon"><i class="ri-code-s-slash-line" style="color: #2563EB;"></i></div>
-                <img src="https://dev.mai.ru/generic/images/logo/mai-web-eng.svg" class="hl-logo" alt="MAI">
-            </div>
-            <div>
-                <div class="hl-title">Technical Background</div>
-                <div class="hl-desc">MAI: Applied Mathematics & Computer Science. I design complex systems simply and understand logic.</div>
-            </div>
+        <div>
+          <div class="hl-title">Speaker at Google Russia</div>
+          <div class="hl-desc">YouTube NextStep Festival: Seminar for top creators (100k+) on visual packaging and CTR metrics.</div>
         </div>
+      </div>
+      <div class="hl-card tech">
+        <div class="hl-top">
+          <div class="hl-icon"><i class="ri-code-s-slash-line" style="color:#2563EB;"></i></div>
+          <img src="https://dev.mai.ru/generic/images/logo/mai-web-eng.svg" class="hl-logo" alt="MAI">
+        </div>
+        <div>
+          <div class="hl-title">Technical Background</div>
+          <div class="hl-desc">MAI: Applied Mathematics & Computer Science. I design user-friendly interfaces for complex systems.</div>
+        </div>
+      </div>
     </div>
-    
+
     <div id="highlights-ru" class="highlights-row hidden">
-        <div class="hl-card google">
-            <div class="hl-top">
-                <div class="hl-icon"><i class="ri-star-line" style="color: #D97706;"></i></div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" class="hl-logo" alt="Google">
-            </div>
-            <div>
-                <div class="hl-title">Спикер Google Russia</div>
-                <div class="hl-desc">Фестиваль YouTube NextStep: Семинар для топ-креаторов (100k+) о визуальной упаковке и влиянии на CTR.</div>
-            </div>
+      <div class="hl-card google">
+        <div class="hl-top">
+          <div class="hl-icon"><i class="ri-star-line" style="color:#D97706;"></i></div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" class="hl-logo" alt="Google">
         </div>
-        <div class="hl-card tech">
-            <div class="hl-top">
-                <div class="hl-icon"><i class="ri-code-s-slash-line" style="color: #2563EB;"></i></div>
-                <img src="https://dev.mai.ru/generic/images/logo/mai-web-eng.svg" class="hl-logo" alt="MAI">
-            </div>
-            <div>
-                <div class="hl-title">Технический бэкграунд</div>
-                <div class="hl-desc">МАИ: Прикладная математика и информатика. Проектирую сложные системы просто.</div>
-            </div>
+        <div>
+          <div class="hl-title">Спикер Google Russia</div>
+          <div class="hl-desc">Фестиваль YouTube NextStep: Семинар для топ-креаторов (100k+) о визуальной упаковке и влиянии на CTR.</div>
         </div>
+      </div>
+      <div class="hl-card tech">
+        <div class="hl-top">
+          <div class="hl-icon"><i class="ri-code-s-slash-line" style="color:#2563EB;"></i></div>
+          <img src="https://dev.mai.ru/generic/images/logo/mai-web-eng.svg" class="hl-logo" alt="MAI">
+        </div>
+        <div>
+          <div class="hl-title">Технический бэкграунд</div>
+          <div class="hl-desc">МАИ: Прикладная математика и информатика. Проектирую удобные интерфейсы для сложных систем.</div>
+        </div>
+      </div>
     </div>
 
-    <!-- MAIN GRID -->
     <div class="main-grid">
-        
-        <!-- LEFT COLUMN -->
-        <div class="col-left">
-            
-            <!-- EN CONTENT -->
-            <div id="left-en">
-                <span class="section-label">Selected Case Study</span>
-                <div class="card">
-                    <div class="case-header">
-                        <h3>Dental Clinic Dashboard</h3>
-                        <span class="case-year">2022</span>
-                    </div>
-                    <div class="tags-wrapper">
-                        <span class="chip">Internal Tool</span>
-                        <span class="chip">CRM Product</span>
-                        <span class="chip">Web</span>
-                    </div>
-
-                    <div class="block-title">Task</div>
-                    <p>Make it so doctors can see the "live queue" faster, and nurses know when to clean the room.</p>
-
-                    <div class="block-title">Action</div>
-                    <ul class="dash-list">
-                        <li><strong>Redesigned schedule board:</strong> Separated entries into "Arrived" (White) and "Planned" (Gray).</li>
-                        <li><strong>Visual Signals:</strong> Added a bold red signal if a patient waits >20 mins.</li>
-                        <li><strong>Cabinet Status:</strong> Designed room status as the primary signal for cleaning.</li>
-                        <li><strong>UX:</strong> Kept familiar icons to reduce retraining time.</li>
-                    </ul>
-
-                    <div class="block-title">Result</div>
-                    <p>Approved and handed off to development.</p>
-                    
-                    <div class="metrics-block">
-                        <span class="metrics-title">Proposed Success Metrics:</span>
-                        <div class="metrics-row">
-                            <div>
-                                <span class="m-val">Critical Delays</span>
-                                <span class="m-desc">Goal: Reduce % of critical wait times (>20m).</span>
-                            </div>
-                            <div>
-                                <span class="m-val">Turnaround Time</span>
-                                <span class="m-desc">Accelerate room preparation time.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <span class="section-label">Experience</span>
-                <div class="card">
-                    <div class="exp-item">
-                        <div class="case-header" style="margin-bottom: 2px;">
-                            <strong>Freelance</strong> <span class="case-year">2013 — Present</span>
-                        </div>
-                        <span class="role">UX/UI & Visual Designer</span>
-                        <ul class="dash-list">
-                            <li>Interface design for business goals.</li>
-                            <li>Managing a small team (video & design).</li>
-                            <li>Strong focus on visual hierarchy and "readability at a glance".</li>
-                        </ul>
-                    </div>
-                    <div class="exp-item">
-                        <div class="case-header" style="margin-bottom: 2px;">
-                            <strong>Dataduck</strong> <span class="case-year">2021 (6 mos)</span>
-                        </div>
-                        <span class="role">UX/UI Designer</span>
-                        <ul class="dash-list">
-                            <li>Developing User Journey and Concept for Dragon Family mobile app.</li>
-                            <li>Designing high-conversion landing pages.</li>
-                        </ul>
-                    </div>
-                </div>
+      <!-- LEFT -->
+      <div class="col-left">
+        <div id="left-en">
+          <span class="section-label">Selected Case Study</span>
+          <div class="card">
+            <div class="case-header">
+              <h3>Dental Clinic Dashboard</h3>
+              <span class="case-year">2022</span>
+            </div>
+            <div class="tags-wrapper">
+              <span class="chip">Internal Tool</span>
+              <span class="chip">CRM Product</span>
+              <span class="chip">Web</span>
             </div>
 
-            <!-- RU CONTENT -->
-            <div id="left-ru" class="hidden">
-                <span class="section-label">Ключевой кейс</span>
-                <div class="card">
-                    <div class="case-header">
-                        <h3>Табло для стоматологий</h3>
-                        <span class="case-year">2022</span>
-                    </div>
-                    <div class="tags-wrapper">
-                        <span class="chip">Internal Tool</span>
-                        <span class="chip">CRM</span>
-                        <span class="chip">Web</span>
-                    </div>
+            <div class="block-title">Task</div>
+            <p>Make it so doctors can see the "live queue" faster, and nurses know when to clean the room.</p>
 
-                    <div class="block-title">Задача</div>
-                    <p>Сделать так, чтобы врачи быстрее видели «живую очередь», а санитарки — когда убирать.</p>
+            <div class="block-title">Action</div>
+            <ul class="dash-list">
+              <li><strong>Redesigned schedule board:</strong> Separated entries into "Arrived" (White) and "Planned" (Gray).</li>
+              <li><strong>Visual Signals:</strong> Added a bold red signal if a patient waits &gt;20 mins.</li>
+              <li><strong>Cabinet Status:</strong> Designed room status as the primary signal for cleaning.</li>
+              <li><strong>UX:</strong> Kept familiar icons to reduce retraining time.</li>
+            </ul>
 
-                    <div class="block-title">Что сделал</div>
-                    <ul class="dash-list">
-                        <li><strong>Переработал табло:</strong> Разделил записи на «кто пришёл» и «кто в плане».</li>
-                        <li><strong>Визуальные сигналы:</strong> Красный сигнал, если ожидание > 20 мин.</li>
-                        <li><strong>Статус кабинета:</strong> Спроектировал статус как сигнал для уборки.</li>
-                    </ul>
+            <div class="block-title">Result</div>
+            <p>Approved and handed off to development.</p>
 
-                    <div class="block-title">Итог</div>
-                    <p>Одобрено и передано в разработку.</p>
-                    
-                    <div class="metrics-block">
-                        <span class="metrics-title">Предлагаемые метрики успеха:</span>
-                        <div class="metrics-row">
-                            <div>
-                                <span class="m-val">Снижение задержек</span>
-                                <span class="m-desc">Цель: Снизить % критичных ожиданий (>20 мин).</span>
-                            </div>
-                            <div>
-                                <span class="m-val">Оптимизация простоя</span>
-                                <span class="m-desc">Ускорение подготовки кабинетов.</span>
-                            </div>
-                        </div>
-                    </div>
+            <div class="metrics-block">
+              <span class="metrics-title">Proposed Success Metrics:</span>
+              <div class="metrics-row">
+                <div>
+                  <span class="m-val">Critical Delays</span>
+                  <span class="m-desc">Goal: Reduce % of critical wait times (&gt;20m).</span>
                 </div>
-
-                <span class="section-label">Опыт работы</span>
-                <div class="card">
-                    <div class="exp-item">
-                        <div class="case-header" style="margin-bottom: 2px;">
-                            <strong>Freelance</strong> <span class="case-year">2013 — н.в.</span>
-                        </div>
-                        <span class="role">UX/UI & Visual Designer</span>
-                        <ul class="dash-list">
-                            <li>Дизайн интерфейсов и визуальных материалов.</li>
-                            <li>Управление небольшой командой (видео и дизайн).</li>
-                            <li>Сильная сторона — ясная иерархия.</li>
-                        </ul>
-                    </div>
-                    <div class="exp-item">
-                        <div class="case-header" style="margin-bottom: 2px;">
-                            <strong>Dataduck</strong> <span class="case-year">2021 (6 мес)</span>
-                        </div>
-                        <span class="role">UX/UI Designer</span>
-                        <ul class="dash-list">
-                            <li>Разработка User Journey и концепта.</li>
-                            <li>Дизайн продающих лендингов.</li>
-                        </ul>
-                    </div>
+                <div>
+                  <span class="m-val">Turnaround Time</span>
+                  <span class="m-desc">Accelerate room preparation time.</span>
                 </div>
+              </div>
             </div>
+          </div>
 
+          <span class="section-label">Experience</span>
+          <div class="card">
+            <div class="exp-item">
+              <div class="case-header" style="margin-bottom:2px;">
+                <strong>Freelance</strong> <span class="case-year">2013 — Present</span>
+              </div>
+              <span class="role">UX/UI &amp; Visual Designer</span>
+              <ul class="dash-list">
+                <li>Interface design for business goals.</li>
+                <li>Managing a small team (video &amp; design).</li>
+                <li>Strong focus on visual hierarchy and "readability at a glance".</li>
+              </ul>
+            </div>
+            <div class="exp-item">
+              <div class="case-header" style="margin-bottom:2px;">
+                <strong>Dataduck</strong> <span class="case-year">2021 (6 mos)</span>
+              </div>
+              <span class="role">UX/UI Designer</span>
+              <ul class="dash-list">
+                <li>Developing User Journey and Concept for Dragon Family mobile app.</li>
+                <li>Designing high-conversion landing pages.</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <!-- RIGHT COLUMN -->
-        <div class="col-right">
-            
-            <!-- EN SIDEBAR -->
-            <div id="right-en">
-                <span class="section-label">Skills & Stack</span>
-                <div class="card">
-                    <div class="skill-group">
-                        <div class="block-title" style="margin-top:0;">Research & Soft Skills</div>
-                        <p>Requirements Gathering, Competitor Analysis, Dev Handoff, Design QA.</p>
-                    </div>
-                    <div class="skill-group">
-                        <div class="block-title">UX / Logic</div>
-                        <p>User Flows, IA, Prototyping, States, Microcopy.</p>
-                    </div>
-                    <div class="skill-group">
-                        <div class="block-title">UI / Visual</div>
-                        <p>Typography, Composition, Design Systems.</p>
-                    </div>
-                    <div class="skill-group">
-                        <div class="block-title">Tools</div>
-                        <div class="tags-wrapper" style="margin-bottom:0;">
-                            <span class="chip">Figma</span>
-                            <span class="chip">Miro</span>
-                            <span class="chip">ChatGPT/AI</span>
-                            <span class="chip">Midjourney</span>
-                        </div>
-                    </div>
-                </div>
-
-                <span class="section-label">Other Projects</span>
-                <div class="card" style="padding: 20px;">
-                    <div class="mini-proj">
-                        <div class="mini-head">Shinoteka</div>
-                        <div class="mini-sub">E-commerce redesign: Simplified search & filters.</div>
-                    </div>
-                    <div class="mini-proj">
-                        <div class="mini-head">Avito Real Estate</div>
-                        <div class="mini-sub">Student Case: UX improvement of the product card.</div>
-                    </div>
-                    <div class="mini-proj">
-                        <div class="mini-head">Zoom Redesign</div>
-                        <div class="mini-sub">Concept: Call interface optimization.</div>
-                    </div>
-                    <div class="mini-proj">
-                        <div class="mini-head">SMB Projects</div>
-                        <div class="mini-sub">Promo-landings and business card sites for small businesses.</div>
-                    </div>
-                </div>
-                
-                <span class="section-label">Education</span>
-                <div class="card">
-                     <div style="margin-bottom: 12px;">
-                        <div style="font-weight:600; font-size:13px;">MAI University</div>
-                        <div style="font-size:12px; color:var(--text-tertiary);">Applied Mathematics & Computer Science (2011-2015)</div>
-                    </div>
-                    <div class="edu-row"><span>English</span> <strong>Upper-Int</strong></div>
-                    <div class="edu-row"><span>Russian</span> <strong>Native</strong></div>
-                </div>
+        <div id="left-ru" class="hidden">
+          <span class="section-label">Ключевой кейс</span>
+          <div class="card">
+            <div class="case-header">
+              <h3>Табло для стоматологий</h3>
+              <span class="case-year">2022</span>
+            </div>
+            <div class="tags-wrapper">
+              <span class="chip">Internal Tool</span>
+              <span class="chip">CRM</span>
+              <span class="chip">Web</span>
             </div>
 
-            <!-- RU SIDEBAR -->
-            <div id="right-ru" class="hidden">
-                <span class="section-label">Навыки</span>
-                <div class="card">
-                    <div class="skill-group">
-                        <div class="block-title" style="margin-top:0;">Research & Процессы</div>
-                        <p>Сбор требований, Анализ конкурентов, Передача в разработку (Handoff), Design QA.</p>
-                    </div>
-                    <div class="skill-group">
-                        <div class="block-title">UX / Логика</div>
-                        <p>Сценарии, User Flows, IA, Прототипирование.</p>
-                    </div>
-                    <div class="skill-group">
-                        <div class="block-title">UI / Визуал</div>
-                        <p>Типографика, Композиция, Дизайн-системы.</p>
-                    </div>
-                    <div class="skill-group">
-                        <div class="block-title">Инструменты</div>
-                        <div class="tags-wrapper" style="margin-bottom:0;">
-                            <span class="chip">Figma</span>
-                            <span class="chip">Miro</span>
-                            <span class="chip">ChatGPT/AI</span>
-                            <span class="chip">Midjourney</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="block-title">Задача</div>
+            <p>Сделать так, чтобы врачи быстрее видели «живую очередь», а санитарки — когда убирать.</p>
 
-                <span class="section-label">Другие проекты</span>
-                <div class="card" style="padding: 20px;">
-                    <div class="mini-proj">
-                        <div class="mini-head">Шинотека</div>
-                        <div class="mini-sub">Редизайн e-commerce: упрощение поиска и фильтров.</div>
-                    </div>
-                    <div class="mini-proj">
-                        <div class="mini-head">Авито Недвижимость</div>
-                        <div class="mini-sub">Учебный кейс: Концепт улучшения UX карточки.</div>
-                    </div>
-                    <div class="mini-proj">
-                        <div class="mini-head">Zoom Redesign</div>
-                        <div class="mini-sub">Концепт: Оптимизация экрана звонка.</div>
-                    </div>
-                    <div class="mini-proj">
-                        <div class="mini-head">SMB Проекты</div>
-                        <div class="mini-sub">Промо-лендинги и сайты-визитки для малого бизнеса.</div>
-                    </div>
+            <div class="block-title">Что сделал</div>
+            <ul class="dash-list">
+              <li><strong>Переработал табло:</strong> Разделил записи на «кто пришёл» и «кто в плане».</li>
+              <li><strong>Визуальные сигналы:</strong> Красный сигнал, если ожидание &gt; 20 мин.</li>
+              <li><strong>Статус кабинета:</strong> Спроектировал статус как сигнал для уборки.</li>
+            </ul>
+
+            <div class="block-title">Итог</div>
+            <p>Одобрено и передано в разработку.</p>
+
+            <div class="metrics-block">
+              <span class="metrics-title">Предлагаемые метрики успеха:</span>
+              <div class="metrics-row">
+                <div>
+                  <span class="m-val">Снижение задержек</span>
+                  <span class="m-desc">Цель: Снизить % критичных ожиданий (&gt;20 мин).</span>
                 </div>
-                
-                <span class="section-label">ВУЗ и Языки</span>
-                <div class="card">
-                     <div style="margin-bottom: 12px;">
-                        <div style="font-weight:600; font-size:13px;">МАИ (ВУЗ)</div>
-                        <div style="font-size:12px; color:var(--text-tertiary);">Прикладная математика и информатика</div>
-                    </div>
-                    <div class="edu-row"><span>Английский</span> <strong>Upper-Int</strong></div>
-                    <div class="edu-row"><span>Русский</span> <strong>Родной</strong></div>
+                <div>
+                  <span class="m-val">Оптимизация простоя</span>
+                  <span class="m-desc">Ускорение подготовки кабинетов.</span>
                 </div>
+              </div>
             </div>
+          </div>
 
+          <span class="section-label">Опыт работы</span>
+          <div class="card">
+            <div class="exp-item">
+              <div class="case-header" style="margin-bottom:2px;">
+                <strong>Freelance</strong> <span class="case-year">2013 — н.в.</span>
+              </div>
+              <span class="role">UX/UI &amp; Visual Designer</span>
+              <ul class="dash-list">
+                <li>Дизайн интерфейсов и визуальных материалов.</li>
+                <li>Управление небольшой командой (видео и дизайн).</li>
+                <li>Сильная сторона — ясная иерархия.</li>
+              </ul>
+            </div>
+            <div class="exp-item">
+              <div class="case-header" style="margin-bottom:2px;">
+                <strong>Dataduck</strong> <span class="case-year">2021 (6 мес)</span>
+              </div>
+              <span class="role">UX/UI Designer</span>
+              <ul class="dash-list">
+                <li>Разработка User Journey и концепта.</li>
+                <li>Дизайн продающих лендингов.</li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="col-right">
+        <div id="right-en">
+          <span class="section-label">Skills &amp; Stack</span>
+          <div class="card">
+            <div class="skill-group">
+              <div class="block-title" style="margin-top:0;">Research &amp; Soft Skills</div>
+              <p>Requirements Gathering, Competitor Analysis, A/B Testing, Dev Handoff.</p>
+            </div>
+            <div class="skill-group">
+              <div class="block-title">UX / Logic</div>
+              <p>CJM, User Flows, IA, Prototyping, States.</p>
+            </div>
+            <div class="skill-group">
+              <div class="block-title">UI / Visual</div>
+              <p>Typography, Composition, Design Systems, Motion Design.</p>
+            </div>
+            <div class="skill-group">
+              <div class="block-title">Tools</div>
+              <div class="tags-wrapper" style="margin-bottom:0;">
+                <span class="chip">Figma</span>
+                <span class="chip">Adobe CC</span>
+                <span class="chip">ChatGPT/AI</span>
+                <span class="chip">Midjourney</span>
+              </div>
+            </div>
+          </div>
+
+          <span class="section-label">Education</span>
+          <div class="card">
+            <div style="margin-bottom:2px;">
+              <div style="font-weight:600;font-size:13px;">MAI University</div>
+              <div style="font-size:12px;color:var(--text-tertiary);">Bachelor of Applied Mathematics &amp; Computer Science (2011-2015)</div>
+            </div>
+          </div>
+
+          <span class="section-label">Languages</span>
+          <div class="card" style="padding:24px;">
+            <div class="edu-row"><span>English</span> <strong>Upper-Int</strong></div>
+            <div class="edu-row"><span>Russian</span> <strong>Native</strong></div>
+          </div>
+
+          <span class="section-label" style="margin-top:24px;">Other Projects</span>
+          <div class="card" style="padding:20px;">
+            <div class="mini-proj"><div class="mini-head">Shinoteka</div><div class="mini-sub">E-commerce redesign: Simplified search &amp; filters.</div></div>
+            <div class="mini-proj"><div class="mini-head">Avito Real Estate</div><div class="mini-sub">Student Case: UX improvement of the product card.</div></div>
+            <div class="mini-proj"><div class="mini-head">Zoom Redesign</div><div class="mini-sub">Concept: Call interface optimization.</div></div>
+            <div class="mini-proj"><div class="mini-head">SMB Projects</div><div class="mini-sub">Promo-landings and business card sites for small businesses.</div></div>
+          </div>
+        </div>
+
+        <div id="right-ru" class="hidden">
+          <span class="section-label">Навыки</span>
+          <div class="card">
+            <div class="skill-group">
+              <div class="block-title" style="margin-top:0;">Research &amp; Процессы</div>
+              <p>Сбор требований, Анализ конкурентов, А/Б Тестирование, Передача в разработку.</p>
+            </div>
+            <div class="skill-group">
+              <div class="block-title">UX / Логика</div>
+              <p>CJM, Сценарии, User Flows, IA, Прототипирование.</p>
+            </div>
+            <div class="skill-group">
+              <div class="block-title">UI / Визуал</div>
+              <p>Типографика, Композиция, Дизайн-системы, Motion Design.</p>
+            </div>
+            <div class="skill-group">
+              <div class="block-title">Инструменты</div>
+              <div class="tags-wrapper" style="margin-bottom:0;">
+                <span class="chip">Figma</span>
+                <span class="chip">Adobe CC</span>
+                <span class="chip">ChatGPT/AI</span>
+                <span class="chip">Midjourney</span>
+              </div>
+            </div>
+          </div>
+
+          <span class="section-label">Образование</span>
+          <div class="card">
+            <div style="margin-bottom:2px;">
+              <div style="font-weight:600;font-size:13px;">МАИ (ВУЗ)</div>
+              <div style="font-size:12px;color:var(--text-tertiary);">Прикладная математика и информатика, Бакалавр (2011-2015)</div>
+            </div>
+          </div>
+
+          <span class="section-label">Языки</span>
+          <div class="card" style="padding:24px;">
+            <div class="edu-row"><span>Английский</span> <strong>Upper-Int</strong></div>
+            <div class="edu-row"><span>Русский</span> <strong>Родной</strong></div>
+          </div>
+
+          <span class="section-label" style="margin-top:24px;">Другие проекты</span>
+          <div class="card" style="padding:20px;">
+            <div class="mini-proj"><div class="mini-head">Шинотека</div><div class="mini-sub">Редизайн e-commerce: упрощение поиска и фильтров.</div></div>
+            <div class="mini-proj"><div class="mini-head">Авито Недвижимость</div><div class="mini-sub">Учебный кейс: Концепт улучшения UX карточки.</div></div>
+            <div class="mini-proj"><div class="mini-head">Zoom Redesign</div><div class="mini-sub">Концепт: Оптимизация экрана звонка.</div></div>
+            <div class="mini-proj"><div class="mini-head">SMB Проекты</div><div class="mini-sub">Промо-лендинги и сайты-визитки для малого бизнеса.</div></div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<script>
+  <script>
     function setLang(lang) {
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
 
-        if(lang === 'en') {
-            ['highlights-en', 'left-en', 'right-en'].forEach(id => document.getElementById(id).classList.remove('hidden'));
-            ['highlights-ru', 'left-ru', 'right-ru'].forEach(id => document.getElementById(id).classList.add('hidden'));
-            document.getElementById('name').innerText = "Vladimir Prokhorenko";
-            document.getElementById('bio').innerText = "Product Designer with a technical background (MAI: Applied Math). I design interfaces that help people understand what's happening faster and complete tasks without unnecessary actions.";
-            document.getElementById('cvText').innerText = "Download CV";
-        } else {
-            ['highlights-en', 'left-en', 'right-en'].forEach(id => document.getElementById(id).classList.add('hidden'));
-            ['highlights-ru', 'left-ru', 'right-ru'].forEach(id => document.getElementById(id).classList.remove('hidden'));
-            document.getElementById('name').innerText = "Владимир Прохоренко";
-            document.getElementById('bio').innerText = "Продуктовый дизайнер с техническим бэкграундом (МАИ: Прикладная математика). Делаю интерфейсы, которые помогают людям быстрее понимать суть и выполнять задачи без лишних действий.";
-            document.getElementById('cvText').innerText = "Скачать резюме";
-        }
+      if (lang === 'en') {
+        ['highlights-en','left-en','right-en'].forEach(id => document.getElementById(id).classList.remove('hidden'));
+        ['highlights-ru','left-ru','right-ru'].forEach(id => document.getElementById(id).classList.add('hidden'));
+
+        document.getElementById('name').innerText = "Vladimir Prokhorenko";
+        document.getElementById('loc').innerHTML = '<i class="ri-map-pin-line"></i> Phuket, Thailand (UTC+7) • Remote';
+        document.getElementById('bio').innerText =
+          "Product designer with a technical background and strong visual foundation. I create interfaces that help people quickly understand the essence and complete tasks without unnecessary actions.";
+        document.getElementById('cvText').innerText = "Download CV";
+        document.getElementById('portText').innerText = "Portfolio";
+      } else {
+        ['highlights-en','left-en','right-en'].forEach(id => document.getElementById(id).classList.add('hidden'));
+        ['highlights-ru','left-ru','right-ru'].forEach(id => document.getElementById(id).classList.remove('hidden'));
+
+        document.getElementById('name').innerText = "Владимир Прохоренко";
+        document.getElementById('loc').innerHTML = '<i class="ri-map-pin-line"></i> Пхукет, Тайланд (UTC+7) • Удаленно';
+        document.getElementById('bio').innerText =
+          "Продуктовый дизайнер с техническим бэкграундом и сильной визуальной базой. Делаю интерфейсы, которые помогают людям быстрее понимать суть и выполнять задачи без лишних действий.";
+        document.getElementById('cvText').innerText = "Скачать резюме";
+        document.getElementById('portText').innerText = "Портфолио";
+      }
     }
 
     function copyEmail() {
-        const email = "ellgin1@gmail.com"; 
-        navigator.clipboard.writeText(email).then(() => {
-            const btn = document.getElementById('emailBtn');
-            const txt = document.getElementById('emailText');
-            const icon = document.getElementById('emailIcon');
-            const isEn = !document.getElementById('left-en').classList.contains('hidden');
-            
-            const originalText = "ellgin1@gmail.com";
-            
-            // Visual Feedback
-            btn.style.backgroundColor = "#10B981"; // Green
-            btn.style.color = "white"; // White text
-            btn.style.borderColor = "#10B981";
-            
-            // Icon Change
-            icon.className = "ri-check-line";
-            icon.style.color = "white"; 
+      const email = "ellgin1@gmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        const btn = document.getElementById('emailBtn');
+        const txt = document.getElementById('emailText');
+        const icon = document.getElementById('emailIcon');
+        const isEn = !document.getElementById('left-en').classList.contains('hidden');
 
-            // Text Change
-            txt.innerText = isEn ? "Copied" : "Скопировано";
-            
-            setTimeout(() => {
-                // Reset
-                btn.style.backgroundColor = "";
-                btn.style.color = "";
-                btn.style.borderColor = "";
-                icon.className = "ri-mail-line";
-                icon.style.color = ""; 
-                txt.innerText = originalText;
-            }, 2000);
-        });
+        btn.style.backgroundColor = "#10B981";
+        btn.style.color = "white";
+        btn.style.borderColor = "#10B981";
+        icon.className = "ri-check-line";
+        icon.style.color = "white";
+        txt.innerText = isEn ? "Copied" : "Скопировано";
+
+        setTimeout(() => {
+          btn.style.backgroundColor = "";
+          btn.style.color = "";
+          btn.style.borderColor = "";
+          icon.className = "ri-mail-line";
+          icon.style.color = "";
+          txt.innerText = "ellgin1@gmail.com";
+        }, 2000);
+      });
     }
-</script>
-
+  </script>
 </body>
 </html>
