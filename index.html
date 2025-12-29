@@ -78,7 +78,6 @@
     .hero-inner{display:flex;gap:32px;align-items:flex-start;}
     .avatar{
       width:100px;height:100px;border-radius:20px;object-fit:cover;
-      
       flex-shrink:0;
       background:#F3F4F6;
     }
@@ -189,20 +188,19 @@
       .contact-bar{flex-direction:column;align-items:stretch;}
       .btn{justify-content:center;}
     }
+
     .hidden{display:none;}
 
     /* ===== PRINT / PDF ===== */
-    @page { margin: 10mm; } /* минимальные поля без «воздуха» */
+    @page { margin: 10mm; }
     @media print{
       html, body{background:#fff !important;}
       body{padding:0 !important;}
       .container{max-width:100% !important;padding:0 !important;margin:0 !important;}
       .navbar{display:none !important;}
 
-      /* сохраняем сетку как на экране */
       .main-grid{grid-template-columns:1.8fr 1fr !important;gap:16px !important;}
 
-      /* убираем «воздух» */
       .card, .hl-card{
         box-shadow:none !important;
         background:#fff !important;
@@ -213,14 +211,12 @@
         page-break-inside:avoid !important;
       }
 
-      /* запрет переносов и «скачков» строк */
       h1, h3, .case-header, .tags-wrapper, .contact-bar, .metrics-row, .edu-row{
         break-inside:avoid !important;
       }
       .btn, .chip, .case-year, .role{white-space:nowrap !important;}
       p, li{orphans:3;widows:3;}
 
-      /* превращаем кнопки в текстовые ссылки */
       .contact-bar{display:flex !important;gap:12px !important;flex-wrap:nowrap !important;}
       .btn{
         display:inline-block !important;
@@ -235,11 +231,9 @@
       }
       .btn i, .figma-icon{display:none !important;}
 
-      /* скрываем кнопку скачивания и email-кнопку (email покажем текстом) */
       .btn.primary{display:none !important;}
       #emailBtn{display:none !important;}
 
-      /* печатные текстовые строки контактов без переносов */
       .print-contacts{
         display:flex !important;
         gap:12px !important;
@@ -252,7 +246,6 @@
       .print-contacts a{color:#000 !important;text-decoration:none !important;white-space:nowrap !important;}
       .print-contacts span{white-space:nowrap !important;}
 
-      /* чипы делаем «печатными» */
       .chip{border:1px solid #E5E7EB !important;background:#fff !important;color:#000 !important;}
       .mini-proj{background:#fff !important;border:1px solid #E5E7EB !important;}
     }
@@ -263,16 +256,15 @@
   <div class="container">
 
     <nav class="navbar">
-      <div class="nav-role">Product Designer | B2B & B2C | UX Optimization, Dashboards, E-commerce </div>
-      <div class="lang-switch">
-        <button class="lang-btn active" onclick="setLang('en')">English</button>
-        <button class="lang-btn" onclick="setLang('ru')">Русский</button>
+      <div class="nav-role">Product Designer | B2B & B2C | UX Optimization, Dashboards, E-commerce</div>
+      <div class="lang-switch" role="group" aria-label="Language switch">
+        <button class="lang-btn active" type="button" data-lang="en">English</button>
+        <button class="lang-btn" type="button" data-lang="ru">Русский</button>
       </div>
     </nav>
 
     <div class="card">
       <div class="hero-inner">
-        <!-- AVATAR: GitHub RAW (direct image) -->
         <img
           src="https://raw.githubusercontent.com/ellgin/ellgin/main/photo.jpg"
           class="avatar"
@@ -281,36 +273,49 @@
         />
 
         <div>
-          <h1 id="name">Vladimir Prokhorenko</h1>
+          <h1>
+            <span id="name-en">Vladimir Prokhorenko</span>
+            <span id="name-ru" class="hidden">Владимир Прохоренко</span>
+          </h1>
 
-          <p id="loc" style="margin-bottom:12px;font-size:13px;color:var(--text-tertiary);">
-            <i class="ri-map-pin-line"></i> Phuket, Thailand (UTC+7) Open to full-time • Remote
+          <p style="margin-bottom:12px;font-size:13px;color:var(--text-tertiary);">
+            <span id="loc-en">
+              <i class="ri-map-pin-line"></i> Phuket, Thailand (UTC+7) Open to full-time • Remote
+            </span>
+            <span id="loc-ru" class="hidden">
+              <i class="ri-map-pin-line"></i> Пхукет, Таиланд (UTC+7) Готов к полной занятости • Удаленно
+            </span>
           </p>
 
-          <p id="bio" class="bio-text">
-            Product designer with a technical background and strong visual foundation. I create interfaces that help people quickly understand the essence and complete tasks without unnecessary actions.
+          <p class="bio-text">
+            <span id="bio-en">
+              Product designer with a technical background and strong visual foundation. I create interfaces that help people quickly understand the essence and complete tasks without unnecessary actions.
+            </span>
+            <span id="bio-ru" class="hidden">
+              Продуктовый дизайнер с техническим бэкграундом и сильной визуальной базой. Делаю интерфейсы, которые помогают людям быстрее понимать суть и выполнять задачи без лишних действий.
+            </span>
           </p>
 
           <div class="contact-bar">
-            <!-- 1. Download CV -->
-            <button onclick="window.print()" class="btn primary">
-              <i class="ri-file-download-line"></i> <span id="cvText">Download CV</span>
+            <button type="button" onclick="window.print()" class="btn primary">
+              <i class="ri-file-download-line"></i>
+              <span id="cvText-en">Download CV</span>
+              <span id="cvText-ru" class="hidden">Скачать резюме</span>
             </button>
 
-            <!-- 2. Portfolio (Suitcase) -->
-            <a href="https://www.figma.com/design/XKwVBKD6BBFoi7QGeKm6T7/Untitled?node-id=105-25&p=f&t=XuSBVN0Q4r2b9GBs-0" target="_blank" class="btn">
+            <a href="https://www.figma.com/design/XKwVBKD6BBFoi7QGeKm6T7/Untitled?node-id=105-25&p=f&t=XuSBVN0Q4r2b9GBs-0" target="_blank" rel="noreferrer" class="btn">
               <i class="ri-briefcase-line"></i>
-              <span id="portText">Portfolio</span>
+              <span id="portText-en">Portfolio</span>
+              <span id="portText-ru" class="hidden">Портфолио</span>
             </a>
 
-            <!-- 3. Telegram (Outline/Paper Plane) -->
-            <a href="https://t.me/mrEllgin" target="_blank" class="btn">
+            <a href="https://t.me/mrEllgin" target="_blank" rel="noreferrer" class="btn">
               <i class="ri-send-plane-line"></i> Telegram
             </a>
 
-            <!-- 4. Email (No spacer before it) -->
-            <button onclick="copyEmail()" class="btn" id="emailBtn" style="min-width:170px;">
-              <i class="ri-mail-line" id="emailIcon"></i> <span id="emailText">ellgin1@gmail.com</span>
+            <button type="button" onclick="copyEmail()" class="btn" id="emailBtn" style="min-width:170px;">
+              <i class="ri-mail-line" id="emailIcon"></i>
+              <span id="emailText">ellgin1@gmail.com</span>
             </button>
           </div>
 
@@ -342,7 +347,7 @@
         </div>
         <div>
           <div class="hl-title">Technical Background</div>
-          <div class="hl-desc">MAI: Applied Mathematics & Computer Science. I design user-friendly interfaces for complex systems. Сan read code, understand implementation constraints, and collaborate effectively with engineers</div>
+          <div class="hl-desc">MAI: Applied Mathematics &amp; Computer Science. I design user-friendly interfaces for complex systems. Can read code, understand implementation constraints, and collaborate effectively with engineers.</div>
         </div>
       </div>
     </div>
@@ -463,10 +468,11 @@
               <li><strong>Переработал табло:</strong> Разделил записи на «кто пришёл» и «кто в плане».</li>
               <li><strong>Визуальные сигналы:</strong> Красный сигнал, если ожидание &gt; 20 мин.</li>
               <li><strong>Статус кабинета:</strong> Спроектировал статус как сигнал для уборки.</li>
+              <li><strong>UX:</strong> Оставил знакомые иконки, чтобы сократить время адаптации.</li>
             </ul>
 
             <div class="block-title">Итог</div>
-            <p>Одобрено и передано в разработку.</p>
+            <p>Одобрено и передано в разработку. Плотно работал с инженерами для точной реализации.</p>
 
             <div class="metrics-block">
               <span class="metrics-title">Предлагаемые метрики успеха:</span>
@@ -494,6 +500,7 @@
                 <li>Дизайн интерфейсов и визуальных материалов.</li>
                 <li>Управление небольшой командой (видео и дизайн).</li>
                 <li>Сильная сторона — ясная иерархия.</li>
+                <li>Доработка CMS-шаблонов и лендингов (Wordpress/Tilda/Ucoz) для малого бизнеса.</li>
               </ul>
             </div>
             <div class="exp-item">
@@ -502,7 +509,7 @@
               </div>
               <span class="role">UX/UI Designer</span>
               <ul class="dash-list">
-                <li>Разработка User Journey и концепта.</li>
+                <li>Разработка User Journey и концепта для мобильного приложения Dragon Family.</li>
                 <li>Дизайн продающих лендингов.</li>
               </ul>
             </div>
@@ -624,58 +631,100 @@
   </div>
 
   <script>
+    // Reliable switcher: only toggles visibility, does not overwrite content.
     function setLang(lang) {
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-      document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+      // buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      // big blocks
+      const show = (id) => document.getElementById(id).classList.remove('hidden');
+      const hide = (id) => document.getElementById(id).classList.add('hidden');
 
       if (lang === 'en') {
-        ['highlights-en','left-en','right-en'].forEach(id => document.getElementById(id).classList.remove('hidden'));
-        ['highlights-ru','left-ru','right-ru'].forEach(id => document.getElementById(id).classList.add('hidden'));
+        show('highlights-en'); hide('highlights-ru');
+        show('left-en'); hide('left-ru');
+        show('right-en'); hide('right-ru');
 
-        document.getElementById('name').innerText = "Vladimir Prokhorenko";
-        document.getElementById('loc').innerHTML = '<i class="ri-map-pin-line"></i> Phuket, Thailand (UTC+7) • Remote';
-        document.getElementById('bio').innerText =
-          "Product designer with a technical background and strong visual foundation. I create interfaces that help people quickly understand the essence and complete tasks without unnecessary actions.";
-        document.getElementById('cvText').innerText = "Download CV";
-        document.getElementById('portText').innerText = "Portfolio";
+        show('name-en'); hide('name-ru');
+        show('loc-en'); hide('loc-ru');
+        show('bio-en'); hide('bio-ru');
+        show('cvText-en'); hide('cvText-ru');
+        show('portText-en'); hide('portText-ru');
+
+        document.documentElement.lang = 'en';
       } else {
-        ['highlights-en','left-en','right-en'].forEach(id => document.getElementById(id).classList.add('hidden'));
-        ['highlights-ru','left-ru','right-ru'].forEach(id => document.getElementById(id).classList.remove('hidden'));
+        hide('highlights-en'); show('highlights-ru');
+        hide('left-en'); show('left-ru');
+        hide('right-en'); show('right-ru');
 
-        document.getElementById('name').innerText = "Владимир Прохоренко";
-        document.getElementById('loc').innerHTML = '<i class="ri-map-pin-line"></i> Пхукет, Тайланд (UTC+7) Готов к полной занятости • Удаленно';
-        document.getElementById('bio').innerText =
-          "Продуктовый дизайнер с техническим бэкграундом и сильной визуальной базой. Делаю интерфейсы, которые помогают людям быстрее понимать суть и выполнять задачи без лишних действий.";
-        document.getElementById('cvText').innerText = "Скачать резюме";
-        document.getElementById('portText').innerText = "Портфолио";
+        hide('name-en'); show('name-ru');
+        hide('loc-en'); show('loc-ru');
+        hide('bio-en'); show('bio-ru');
+        hide('cvText-en'); show('cvText-ru');
+        hide('portText-en'); show('portText-ru');
+
+        document.documentElement.lang = 'ru';
       }
     }
 
     function copyEmail() {
-      const email = "ellgin1@gmail.com";
-      navigator.clipboard.writeText(email).then(() => {
+      const email = 'ellgin1@gmail.com';
+
+      // Fallback for older browsers or non-secure contexts
+      const fallbackCopy = () => {
+        const ta = document.createElement('textarea');
+        ta.value = email;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      };
+
+      const afterCopy = () => {
         const btn = document.getElementById('emailBtn');
         const txt = document.getElementById('emailText');
         const icon = document.getElementById('emailIcon');
         const isEn = !document.getElementById('left-en').classList.contains('hidden');
 
-        btn.style.backgroundColor = "#10B981";
-        btn.style.color = "white";
-        btn.style.borderColor = "#10B981";
-        icon.className = "ri-check-line";
-        icon.style.color = "white";
-        txt.innerText = isEn ? "Copied" : "Скопировано";
+        btn.style.backgroundColor = '#10B981';
+        btn.style.color = 'white';
+        btn.style.borderColor = '#10B981';
+        icon.className = 'ri-check-line';
+        icon.style.color = 'white';
+        txt.innerText = isEn ? 'Copied' : 'Скопировано';
 
         setTimeout(() => {
-          btn.style.backgroundColor = "";
-          btn.style.color = "";
-          btn.style.borderColor = "";
-          icon.className = "ri-mail-line";
-          icon.style.color = "";
-          txt.innerText = "ellgin1@gmail.com";
+          btn.style.backgroundColor = '';
+          btn.style.color = '';
+          btn.style.borderColor = '';
+          icon.className = 'ri-mail-line';
+          icon.style.color = '';
+          txt.innerText = email;
         }, 2000);
-      });
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(email).then(afterCopy).catch(() => {
+          fallbackCopy();
+          afterCopy();
+        });
+      } else {
+        fallbackCopy();
+        afterCopy();
+      }
     }
+
+    // Init
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.lang));
+    });
+
+    setLang('en');
   </script>
 </body>
 </html>
